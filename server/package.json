@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node server.js",
+    "start": "node server.js",
     "watch": "nodemon server.js --watch server.js",
     "seed": "node seeders/seed.js"
   },
@@ -17,7 +17,6 @@
     "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "graphql": "^16.6.0",
     "jsonwebtoken": "^8.5.1",
