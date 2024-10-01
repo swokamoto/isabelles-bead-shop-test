@@ -11,6 +11,7 @@ import "./assets/css/product-card.css"
 import "./assets/css/admin.css"
 import "./assets/css/about.css"
 import "./assets/css/cart.css"
+import "./assets/css/queries.css"
 
 //Importing pages
 import HomePage from "./pages/Home.jsx";
@@ -42,10 +43,10 @@ const router = createBrowserRouter([
         path: "/about",
         element: <AboutPage />,
       },
-      {
-        path: "/account/:userId",
-        element: <AccountPage />,
-      },
+      // {
+      //   path: "/account/:userId",
+      //   element: <AccountPage />,
+      // },
       {
         path: "/cart",
         element: <Cart />,
@@ -68,9 +69,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  //<StrictMode>
     <ThemeProvider>
       <RouterProvider router={router} />
     </ThemeProvider>
-  </StrictMode>
+ // </StrictMode>
 );

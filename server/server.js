@@ -7,7 +7,7 @@ const { authMiddleware } = require("./utils/auth");
 
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
-const { add } = require("./models/reviews");
+const { add, method } = require("./models/reviews");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const server = new ApolloServer({
@@ -66,23 +66,19 @@ const startApolloServer = async () => {
       res.json({ sessionId: session.id });
     } catch (error) {
       console.error("Error creating checkout session:", error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: "Internal Server Error" });
     }
   });
 
-  app.get("/retrieve-checkout-session/:sessionId", async (req, res) => {
-    const sessionId = req.params.sessionId;
-
-    try {
-      const session = await stripe.checkout.sessions.retrieve(sessionId, {
-        expand: ["line_items"],
-      });
-      res.json(session);
-    } catch (error) {
-      console.error("Error retrieving session:", error);
-      res.status(500).json({ error: error.message });
-    }
-  });
+  // app.get('/retrieve-checkout-session/:sessionId', async (req, res) => {
+  //   try {
+  //     const session = await stripe.checkout.sessions.retrieve(req.params.sessionId);
+  //     res.json(session);
+  //   } catch (error) {
+  //     console.error('Error retrieving checkout session:', error);
+  //     res.status(500).json({ error: 'Failed to retrieve session' });
+  //   }
+  // });
 
   db.once("open", () => {
     app.listen(PORT, () =>
